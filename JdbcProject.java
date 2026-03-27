@@ -23,10 +23,13 @@ public class JdbcProject {
                 ResultSet rs = st.executeQuery(viewRecords);
                 while (rs.next()) {
                     System.out.println(
-                            "Name : " + rs.getString(2) + ", Role : " + rs.getString(3) + ", Salary : " + rs.getInt(4));
+                            "Id : "+rs.getInt(1) +" Name : " + rs.getString(2) + ", Role : " + rs.getString(4) + ", Salary : " + rs.getInt(3));
                 }
             }
             else if(choice == 2){
+                Input.nextLine();
+                System.out.println("Enter Employee Id : ");
+                int id = Input.nextInt();
                 Input.nextLine();
                 System.out.println("Enter Employee Name : ");
                 String name = Input.nextLine();
@@ -34,11 +37,12 @@ public class JdbcProject {
                 String role = Input.nextLine();
                 System.out.println("Enter Employee Salary : ");
                 int salary = Input.nextInt();
-                String addQuery = "insert into Employee (name, role, salary) values (?,?,?)";
+                String addQuery = "insert into Employee values (?, ?, ?, ?)";
                 PreparedStatement st = con.prepareStatement(addQuery);
-                st.setString(1, name);
-                st.setString(2, role);
+                st.setInt(1, id);
+                st.setString(2, name);
                 st.setInt(3, salary);
+                st.setString(4, role);
                 st.executeUpdate();
             }
             else if(choice == 3){
@@ -67,7 +71,11 @@ public class JdbcProject {
                 st.setInt(4,id);
                 st.executeUpdate();
             }
-            
+            else{
+                return;
+            }
+            Input.close();
+            con.close();
         } catch (Exception e) {
             System.out.println("Unable to connect to Database");
         }
