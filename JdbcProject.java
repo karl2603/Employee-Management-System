@@ -49,6 +49,24 @@ public class JdbcProject {
                 st.setInt(1, id);
                 st.executeUpdate();
             }
+            else if(choice == 4){
+                System.out.println("Enter the Employee Id to update : ");
+                int id = Input.nextInt();
+                Input.nextLine();
+                System.out.println("Enter New Name : ");
+                String newName = Input.nextLine();
+                System.out.println("Enter New Role : ");
+                String newRole = Input.nextLine();
+                System.out.println("Enter New Salary : ");
+                int newSalary = Input.nextInt();
+                String updateQuery = "update Employee set name = ?, role = ?, salary = ? where id = ?";
+                PreparedStatement st = con.prepareStatement(updateQuery);
+                st.setString(1, newName);
+                st.setString(2, newRole);
+                st.setInt(3, newSalary);
+                st.setInt(4,id);
+                st.executeUpdate();
+            }
             
         } catch (Exception e) {
             System.out.println("Unable to connect to Database");
