@@ -12,7 +12,6 @@ Features
 - View all employees
 - Update employee details
 - Delete employee records
-- Search employee (optional)
 
 --------------------------------------------------
 
@@ -22,4 +21,4 @@ Tech Stack
 - Java (Core Java)
 - JDBC (Java Database Connectivity)
 - MySQL (Database)
-- SQL
+
