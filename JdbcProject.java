@@ -14,7 +14,8 @@ public class JdbcProject {
             System.out.println("1.View Records");
             System.out.println("2.Add Record");
             System.out.println("3.Delete Record");
-            System.out.println("4.Exit Program");
+            System.out.println("4.Update Record");
+            System.out.println("5.Exit Program");
             int choice = Input.nextInt();
             if (choice == 1) {
                 Statement st = con.createStatement();
@@ -40,6 +41,15 @@ public class JdbcProject {
                 st.setInt(3, salary);
                 st.executeUpdate();
             }
+            else if(choice == 3){
+                System.out.println("Enter Employee ID to delete : ");
+                int id = Input.nextInt();
+                String deleteQuery = "delete from Employee where id = ?";
+                PreparedStatement st = con.prepareStatement(deleteQuery);
+                st.setInt(1, id);
+                st.executeUpdate();
+            }
+            
         } catch (Exception e) {
             System.out.println("Unable to connect to Database");
         }
