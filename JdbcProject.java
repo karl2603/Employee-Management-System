@@ -9,6 +9,8 @@ public class JdbcProject {
         String password = "Burlbed58#";
         try {
             Connection con = DriverManager.getConnection(url, user, password);
+            boolean exit = false;
+            while(!exit){
             System.out.println("Database Connected");
             System.out.println("Enter the number");
             System.out.println("1.View Records");
@@ -72,8 +74,10 @@ public class JdbcProject {
                 st.executeUpdate();
             }
             else{
+                exit = true;
                 return;
             }
+        }
             Input.close();
             con.close();
         } catch (Exception e) {
